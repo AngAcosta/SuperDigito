@@ -1,0 +1,66 @@
+﻿@model ML.SuperDigito
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <h2>Super Digito</h2>
+    </div>
+    <hr />
+
+    @using (Html.BeginForm("GetAll", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Numero, new { @class = "form-control", @id = "txtNumero" })
+                @Html.ValidationMessageFor(model => model.Numero,null, new {@class = "text-danger" })
+            </div>
+
+            <div class=col-md-3>
+                <input type='submit' value="Calcular" class="btn btn-info" />
+            </div>
+
+        </div>
+
+    }
+
+    <hr />
+    <div class="row">
+        @if (Model.SuperDigitos != null)
+        {
+            //tabla
+            <table class="table-info table table-bordered table-responsive table-hover" id="tblUsuario">
+                <thead>
+                    <tr>
+
+                        <td style="display:none">IdHistorial</td>
+                        <td class="text-center" style=" font-weight:bold;">Numero</td>
+                        <td class="text-center" style=" font-weight:bold;">Resultado</td>
+                        <td class="text-center" style=" font-weight:bold;">FechaHora</td>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (ML.SuperDigito superDigito in Model.SuperDigitos)
+                    {
+                        <tr>
+                            
+                            <td style="display:none">@superDigito.idHistorial</td>
+                            <td>@superDigito.Numero</td>
+                            <td>@superDigito.Resultado</td>
+                            <td>@superDigito.FechaHora</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">Ocurrio un error al realizar la consulta </div>
+        }
+    </div>
+</div>
