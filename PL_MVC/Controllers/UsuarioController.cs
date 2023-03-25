@@ -56,7 +56,7 @@ namespace PL.Controllers
             
             if (result.Correct)
             {
-
+               // result = BL.SuperDigito
                 return View(superDigito);
             }
             else

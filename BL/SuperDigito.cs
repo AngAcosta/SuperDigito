@@ -55,25 +55,26 @@ namespace BL
             foreach (char digito in superDigito.Numero) //Separa los numeros Ingresados
             {
                 suma += int.Parse(digito.ToString());
+                //superDigito.Resultado += int.Parse(digito.ToString());
             }
+            superDigito.Resultado = suma.ToString();
 
             if (suma > 9) //Verifica si es la suma mayor a 9 VALORES DE 2 a 4 NUMEROS
             {
                 foreach (char dig in suma.ToString()) //repite el proceso pero con el valor de suma
                 {
-                    suma1 += int.Parse(dig.ToString()); //se separan con una nueva variable suma1
+                    superDigito.Resultado += int.Parse(dig.ToString()); //se separan con una nueva variable suma1
                 }
+                superDigito.Resultado = suma1.ToString();
 
             }
             else
             {
-                Console.WriteLine("El Super Digito de: " + n + " es: " + suma);
-                Console.ReadKey();
+                //superDigito.Resultado = suma;
+                result.Object = (superDigito);
             }
 
-            Console.WriteLine("El Super Digito de: " + n + " es: " + suma1); //da el resultado si es que entra en el if
-            Console.ReadKey();
-
+            result.Object = (superDigito);
 
             return result;
         }
